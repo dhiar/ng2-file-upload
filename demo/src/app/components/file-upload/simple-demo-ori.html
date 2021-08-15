@@ -7,15 +7,47 @@
 </style>
 
 <div class="container">
+
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href>Angular2 File Upload</a>
+        </div>
+    </div>
+
     <div class="row">
+
         <div class="col-md-3">
+
+            <h3>Select files</h3>
+
+            <div ng2FileDrop
+                 [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                 (fileOver)="fileOverBase($event)"
+                 [uploader]="uploader"
+                 class="well my-drop-zone">
+                Base drop zone
+            </div>
+
+            <div ng2FileDrop
+                 [ngClass]="{'another-file-over-class': hasAnotherDropZoneOver}"
+                 (fileOver)="fileOverAnother($event)"
+                 [uploader]="uploader"
+                 class="well my-drop-zone">
+                Another drop zone
+            </div>
+
             Multiple
-            <!-- dhiar -->
             <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
+
+            Single
+            <input type="file" ng2FileSelect [uploader]="uploader" />
         </div>
 
         <div class="col-md-9" style="margin-bottom: 40px">
+
+            <h3>Upload queue</h3>
             <p>Queue length: {{ uploader?.queue?.length }}</p>
+
             <table class="table">
                 <thead>
                 <tr>
@@ -41,6 +73,14 @@
                         <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
                     </td>
                     <td nowrap>
+                        <button type="button" class="btn btn-success btn-xs"
+                                (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                            <span class="glyphicon glyphicon-upload"></span> Upload
+                        </button>
+                        <button type="button" class="btn btn-warning btn-xs"
+                                (click)="item.cancel()" [disabled]="!item.isUploading">
+                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                        </button>
                         <button type="button" class="btn btn-danger btn-xs"
                                 (click)="item.remove()">
                             <span class="glyphicon glyphicon-trash"></span> Remove
@@ -61,17 +101,30 @@
                         (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
                     <span class="glyphicon glyphicon-upload"></span> Upload all
                 </button>
-                <!-- <button type="button" class="btn btn-warning btn-s"
+                <button type="button" class="btn btn-warning btn-s"
                         (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
                     <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
                 </button>
                 <button type="button" class="btn btn-danger btn-s"
                         (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
                     <span class="glyphicon glyphicon-trash"></span> Remove all
-                </button> -->
+                </button>
             </div>
 
         </div>
 
+    </div>
+
+    <br><br>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Response</div>
+                <div class="panel-body">
+                  {{ response }}
+                </div>
+            </div>
+        </div>
     </div>
 </div>

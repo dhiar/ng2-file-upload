@@ -131,6 +131,7 @@
     }
   ],
   "dependencies": {
+    "ng2-file-upload": "^1.4.0",
     "tslib": "^1.10.0"
   }
 }
