@@ -3,20 +3,6 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng2-file-upload": {
-      "root": ".",
-      "sourceRoot": "src",
-      "projectType": "library",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "src/tsconfig.json",
-            "project": "src/ng-package.json"
-          }
-        }
-      }
-    },
     "ng2-file-upload-demo": {
       "root": "demo",
       "sourceRoot": "demo/src",
@@ -67,46 +53,7 @@
           }
         }
       }
-    },
-    "ng2-file-upload-test": {
-      "root": ".",
-      "sourceRoot": "test",
-      "projectType": "library",
-      "architect": {
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "test/test.ts",
-            "karmaConfig": "test/karma.conf.js",
-            "scripts": [],
-            "styles": [],
-            "tsConfig": "test/tsconfig.json"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "src/tsconfig.json",
-              "demo/src/tsconfig.json",
-              "test/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
     }
   },
-  "defaultProject": "ng2-file-upload-demo",
-  "schematics": {
-    "@schematics/angular:component": {
-      "prefix": "",
-      "styleext": "css"
-    },
-    "@schematics/angular:directive": {
-      "prefix": ""
-    }
-  }
+  "defaultProject": "ng2-file-upload-demo"
 }

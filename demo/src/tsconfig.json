@@ -15,11 +15,8 @@
     "target": "es2015"
   },
   "files": [
-    "../../scripts/typings.d.ts",
+    // "../../scripts/typings.d.ts",
     "main.ts",
     "../../scripts/polyfills.ts"
-  ],
-  "exclude": [
-    "**/*.spec.ts"
   ]
 }
